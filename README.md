@@ -1,0 +1,4 @@
+--11/12/19
+-Very basic PIN usage functional
+-Obtaining and displaying of users installed packages
+-Foreground service which retrieves applications package name
