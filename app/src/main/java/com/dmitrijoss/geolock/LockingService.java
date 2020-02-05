@@ -33,6 +33,12 @@ public class LockingService extends Service {
         super.onCreate();
     }
 
+    public void redirect(){
+        Intent i = new Intent(this, MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String input = intent.getStringExtra("inputExtra");
@@ -104,6 +110,9 @@ public class LockingService extends Service {
                 s = "null";
             }
             Log.d("processName", s);
+            if(s != "com.dmitrijoss.geolock" || s != "com.sec.android.app.launcher"){
+                redirect();
+            }
 
             return null;
         }
@@ -145,6 +154,10 @@ public class LockingService extends Service {
                 if (state != null && state == PROCESS_STATE_TOP) {
                     currentInfo = app;
                     break;
+                }
+                if (app.processName != "com.dmitrijoss.geolock" || app.processName != "com.sec.android.app.launcher") {
+                    Log.d("gottem", "tem.");
+
                 }
             }
         }

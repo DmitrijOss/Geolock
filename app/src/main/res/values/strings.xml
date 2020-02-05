@@ -46,4 +46,17 @@
     <string name="pin_code_fingerprint_success">Fingerprint recognized</string>
     <string name="pin_code_fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
 
+    <string name="geofence_locations_select_header">Areas</string>
+    <string name="geofence_locations_create_new">Create New</string>
+    <string name="geofence_name">Name:</string>
+    <string name="geofence_colour">Colour:</string>
+    <string name="geofence_select_location">Select location:</string>
+    <string name="geofence_new_radius">Radius:</string>
+    <string name="geofence_new_create_submit">Create</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
+
+
+
 </resources>

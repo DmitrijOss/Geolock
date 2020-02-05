@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         stopServiceButton = findViewById(R.id.stopServiceButton);
     }
 
+    public void goToF(View view){
+        Intent i = new Intent(this, GeofenceMain.class);
+        startActivity(i);
+    }
+
     public void startService(View view){
         Intent serviceIntent = new Intent(this, LockingService.class);
         serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");

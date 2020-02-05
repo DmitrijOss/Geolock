@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application
@@ -16,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +27,17 @@
         </activity>
         <activity android:name=".FindInstalledApplications"/>
         <activity android:name="com.dmitrijoss.lollipin.CustomPinActivity" />
+        <activity android:name=".GeofenceMain"/>
+        <activity android:name=".GeofenceCreate"/>
+        <activity android:name=".FindCurrentLocation"/>
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyACfusOE-jZDeCcQ3bPXcl_iSIB5pyDECg" />
         <service
             android:name=".LockingService"
             android:enabled="true"
             android:exported="true"
             />
+        <receiver android:name=".GeofenceBroadcastReceiver"/>
     </application>
 
 </manifest>
