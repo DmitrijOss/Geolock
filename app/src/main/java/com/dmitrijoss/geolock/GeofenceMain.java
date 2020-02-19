@@ -7,7 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 
-public class GeofenceMain extends AppCompatActivity {
+public class GeofenceMain extends AppCompatActivity{
     private GeolockPageAdapter adapter;
     private ViewPager mViewPager;
 

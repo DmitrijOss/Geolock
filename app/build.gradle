@@ -24,7 +24,8 @@ dependencies {
     implementation ('com.github.omadahealth:lollipin:2.1.0@aar') {
         transitive = true
     }
-
+    implementation "com.github.skydoves:colorpickerpreference:2.0.0"
+    implementation 'com.jaredrummler:android-processes:1.1.1'
     implementation 'uk.me.lewisdeane.ldialogs:ldialogs:1.2.0@aar'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -34,4 +35,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }
