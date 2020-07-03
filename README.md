@@ -30,11 +30,11 @@ What things you need to install the software and how to install them
 
 ## Screenshots
 
-<img src="https://i.imgur.com/r2SZvkm.png" width="400" style="padding:7px">
-<img src="https://i.imgur.com/mY7Xj7p.png" width="400" style="padding:7px">
-<img src="https://i.imgur.com/0V3XSnP.png" width="400" style="padding:7px">
-<img src="https://i.imgur.com/ULJ0mpr.png" width="400" style="padding:7px">
-<img src="https://i.imgur.com/IUiG4DM.png" width="400" style="padding:7px">
+<img src="https://i.imgur.com/r2SZvkm.png" width="300" style="padding:7px">
+<img src="https://i.imgur.com/mY7Xj7p.png" width="300" style="padding:7px">
+<img src="https://i.imgur.com/0V3XSnP.png" width="300" style="padding:7px">
+<img src="https://i.imgur.com/ULJ0mpr.png" width="300" style="padding:7px">
+<img src="https://i.imgur.com/IUiG4DM.png" width="300" style="padding:7px">
 
 ## Acknowledgments
 
