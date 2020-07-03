@@ -1,6 +1,6 @@
 # Geolock
 
-This application allows its users to designate certain areas on a map they wish to be protected within. The user can then select applications on their device that they wish to have protected.  If a protected application is launched while inside a protected area then the user will instead be redirected to a screen and asked to input a predetermined pin-code
+Geolock is an application made to provide users with an additional layer of security on their Android devices by placing a PIN lock on selected applications. This application allows its users to designate certain areas on a map they wish to be protected within. The user can then select applications on their device that they wish to have protected.  If a protected application is launched while inside a protected area then the user will instead be redirected to a screen and asked to input a predetermined pin-code
 
 ## Getting Started
 
@@ -38,6 +38,10 @@ What you need to install and use the application
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
+
+
+Geolock is an application made to provide users with an additional layer of security on their Android devices by placing a PIN lock on selected applications. Geolock allows you to designate certain areas on a map you wish to be protected within and you can then select applications installed on the device you want to be protected. If a protected application is launched while inside a protected area then the application will instead redirect you to a lock screen and asked to input a predetermined pin-code
+
 
 
 
