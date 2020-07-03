@@ -26,15 +26,15 @@ What things you need to install the software and how to install them
 
 ## Authors
 
-* **Dmitrij Oss** - *Initial work* - [Geolock](https://github.com/DmitrijOss/Geolock)
+* **Dmitrij Oss** - [Geolock](https://github.com/DmitrijOss/Geolock)
 
 ## Screenshots
 
-<img src="https://imgur.com/a/MZpEcw6" width="400" style="padding:7px">
-<img src="https://imgur.com/a/MHO5DSm" width="400" style="padding:7px">
-<img src="https://imgur.com/a/oumHebU" width="400" style="padding:7px">
-<img src="https://imgur.com/a/wHMWJhG" width="400" style="padding:7px">
-<img src="https://imgur.com/a/IRUYeis" width="400" style="padding:7px">
+<img src="https://i.imgur.com/r2SZvkm.png" width="400" style="padding:7px">
+<img src="https://i.imgur.com/mY7Xj7p.png" width="400" style="padding:7px">
+<img src="https://i.imgur.com/0V3XSnP.png" width="400" style="padding:7px">
+<img src="https://i.imgur.com/ULJ0mpr.png" width="400" style="padding:7px">
+<img src="https://i.imgur.com/IUiG4DM.png" width="400" style="padding:7px">
 
 ## Acknowledgments
 
