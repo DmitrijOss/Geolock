@@ -1,11 +1,13 @@
 package com.dmitrijoss.lollipin;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.Toast;
 
+import com.dmitrijoss.geolock.GlobalVars;
 import com.dmitrijoss.geolock.R;
 import com.github.omadahealth.lollipin.lib.managers.AppLockActivity;
 
@@ -71,7 +73,13 @@ public class CustomPinActivity extends AppLockActivity {
 
     @Override
     public void onPinSuccess(int attempts) {
+        GlobalVars mApplication = ((GlobalVars)getApplicationContext());
 
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(mApplication.getOpenedApp());
+        if (launchIntent != null) {
+
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
 
     @Override

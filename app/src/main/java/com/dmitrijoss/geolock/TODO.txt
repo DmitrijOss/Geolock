@@ -1,0 +1,10 @@
+/*
+TODO: Retrieve a list of all geofences and display information on all them
+TODO: Edit any geofence in that list, probably done by getting its information and filling in editTexts with it, then when confirming you delete the old geofence and add in the new one
+TODO: Fix error with geofence creation
+TODO: Get colour selection working
+This'll have me done with the basics of geofences
+TODO: Possibly redo the map dialogFragment, add a FAB to it which expands, to make it look fancier.
+
+
+*/

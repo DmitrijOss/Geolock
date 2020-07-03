@@ -5,7 +5,7 @@
     <string name="installedPackages">View installed applications</string>
 
     <string name="app_name">Geolock</string>
-    <string name="setLock">Create lock</string>
+    <string name="setLock">Change PIN</string>
     <string name="removeLock">Remove lock</string>
     <string name="action_settings">Settings</string>
     <string name="activity_not_locked_text">Nothing should happen on this page, here for test purpose</string>
@@ -14,7 +14,7 @@
     <string name="activity_dialog_decline">CANCEL</string>
     <string name="activity_dialog_content">Tap \'OK\' to log out, when you log back in you\'ll be able to create a new Pincode.\n\nIf you remember your Pincode, tap \'Cancel\' to go back.</string>
     <string name="activity_appcompat_message">I am a PinCompatActivity!</string>
-    <string name="checkPin">Check</string>
+    <string name="checkPin">Check PIN</string>
 
     <string name="button1_large_text" translatable="false">1</string>
     <string name="button2_large_text" translatable="false">2</string>

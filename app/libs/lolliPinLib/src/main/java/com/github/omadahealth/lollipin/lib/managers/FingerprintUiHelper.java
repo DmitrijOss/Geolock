@@ -305,7 +305,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     };
 
     /**
-     * The interface used to call the original Activity/Fragment... that uses this helper.
+     * The interface used to call the original GeofenceCreateActivity/Fragment... that uses this helper.
      */
     public interface Callback {
         void onAuthenticated();

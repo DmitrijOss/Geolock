@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/geofences"
+        android:icon="@drawable/baseline_list_white_18dp"
+        android:title="Geofences"
+        android:contentDescription="Geofences"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/protected_apps"
+        android:icon="@drawable/baseline_list_white_18dp"
+        android:title="Protected Apps"
+        android:contentDescription="Protected Apps"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_list_white_18dp"
+        android:title="Settings"
+        android:contentDescription="Settings"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/more"
+        android:title="Geolock"
+        android:contentDescription="More!"
+        app:showAsAction="never" />
+
+</menu>

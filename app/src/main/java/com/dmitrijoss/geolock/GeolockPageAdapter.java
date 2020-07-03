@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//THIS IS PROBABLY REMOVABLE BUT KEEPING IT FOR NOW JUST INCASE IT ISN'T
+
 public class GeolockPageAdapter extends FragmentPagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();

@@ -1,10 +1,8 @@
-package com.dmitrijoss.geolock;
+package com.dmitrijoss.geolock.geofence;
 
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Color;
-import android.location.Address;
 import android.location.Geocoder;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,84 +14,96 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.fragment.app.DialogFragment;
 
+import com.dmitrijoss.geolock.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.IOException;
-import java.util.List;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
+/*
+    This class is used with geofences_map.xml
+    It is used to select the desired location on the map object within that view
+ */
 
+public class GeofenceMapFragment extends DialogFragment implements OnMapReadyCallback {
 
-public class GeofenceMapFragment extends Fragment implements OnMapReadyCallback {
+    public interface OnInputListener{
+        void sendInput(LatLng location, int rad);
+    }
+    public OnInputListener mOnInputListener;
+
     LatLng selectedLocation;
+    GeofenceMapFragment geofenceMapFragment;
     Button confirm;
     EditText radiusText;
-    Marker marker;
-    Circle circle;
     private GoogleMap gMap;
-    static String currentLocation = "Ireland";
     MapView mapView;
     double currentLat;
     double currentLong;
+    int radius = 100;
     boolean markerExists = false;
-    LocationManager locationManager;
-    GeofenceViewModel viewModel;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.geofences_map_fragment,container, false);
-        confirm = (Button) view.findViewById(R.id.geofence_confirm_location);
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);*/
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.geofences_map, container, false);
 
+        //initialize widgets
+        confirm = (Button) view.findViewById(R.id.geofence_confirm_location);
+        radiusText = (EditText) view.findViewById(R.id.radius);
         mapView = (MapView) view.findViewById(R.id.map);
+        geofenceMapFragment = new GeofenceMapFragment();
+
+        //google map initialization
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
         mapView.getMapAsync(this);
-        radiusText = (EditText) view.findViewById(R.id.radius);
+
+
+        radiusText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(!b){
+                    radius = Integer.parseInt(radiusText.getText().toString());
+                }
+            }
+        });
         confirm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //viewModel = ViewModelProvider.of(this.getActivity()).get(GeofenceViewModel.class);
-                Toast.makeText(getActivity(), "Confirm location", Toast.LENGTH_SHORT).show();
-                GeofenceCreateFragment fragment = new GeofenceCreateFragment ();
-                Bundle args = new Bundle();
-                args.putString("Key", "Value");
-                fragment.setArguments(args);
-                //g.setRadius(Double.parseDouble(radiusText.getText().toString()));
-                //getFragmentManager().beginTransaction().add(container, fragment).commit();
-                ((GeofenceMain)getActivity()).setViewPager(1);
+                Toast.makeText(getActivity().getApplicationContext(), "Confirm location", Toast.LENGTH_SHORT).show();
+                if (!radiusText.getText().toString().equals("")) {
+                    radius = Integer.parseInt(radiusText.getText().toString());
+                }else{radius = 100;}
+                mOnInputListener.sendInput(selectedLocation, radius);
+                getDialog().dismiss();
             }
         });
-
-
         return view;
     }
 
-
-
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+        FindCurrentLocation currentLatLng = new FindCurrentLocation(getContext());
+        currentLatLng.getLocation();
+
+        LatLng latLng = currentLatLng.getLatLng();
+
         gMap = googleMap;
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
 
         gMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
                 currentLong = latLng.longitude;
                 currentLat = latLng.latitude;
                 Log.d("latLng", "Latitude:  "+ currentLat + " Longitude: " + currentLong );
@@ -104,9 +114,9 @@ public class GeofenceMapFragment extends Fragment implements OnMapReadyCallback 
                 if(markerExists == false){
                     googleMap.addMarker(new MarkerOptions()
                             .position(latLng)
-                            .title("yo"));
+                            .title("geofence"));
                     googleMap.addCircle(new CircleOptions()
-                            .radius(50)
+                            .radius(radius)
                             .center(latLng)
                             .strokeColor(Color.RED))
                             .setFillColor(0x220000FF);
@@ -116,9 +126,9 @@ public class GeofenceMapFragment extends Fragment implements OnMapReadyCallback 
                     googleMap.clear();
                     googleMap.addMarker(new MarkerOptions()
                             .position(latLng)
-                            .title("yo"));
+                            .title("geofence"));
                     googleMap.addCircle(new CircleOptions()
-                            .radius(50)
+                            .radius(radius)
                             .center(latLng)
                             .strokeColor(Color.RED))
                             .setFillColor(0x220000FF);
@@ -126,5 +136,15 @@ public class GeofenceMapFragment extends Fragment implements OnMapReadyCallback 
 
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            mOnInputListener = (OnInputListener) getActivity();
+        }catch (ClassCastException e){
+            Log.e(TAG, "onAttach: ClassCastException: " + e.getMessage() );
+        }
     }
 }

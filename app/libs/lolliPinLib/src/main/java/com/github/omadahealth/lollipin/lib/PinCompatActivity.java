@@ -13,7 +13,7 @@ import com.github.omadahealth.lollipin.lib.managers.AppLockActivity;
 
 /**
  * Created by callmepeanut on 16-1-14.
- * You must extend this Activity in order to support this library.
+ * You must extend this GeofenceCreateActivity in order to support this library.
  * Then to enable PinCode blocking, you must call
  * {@link com.github.omadahealth.lollipin.lib.managers.LockManager#enableAppLock(android.content.Context, Class)}
  */

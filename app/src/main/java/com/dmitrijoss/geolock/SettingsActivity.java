@@ -1,41 +1,31 @@
 package com.dmitrijoss.geolock;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import com.dmitrijoss.geolock.geofence.GeofenceMainActivity;
 import com.dmitrijoss.lollipin.CustomPinActivity;
-import com.github.omadahealth.lollipin.lib.PinActivity;
-import com.github.omadahealth.lollipin.lib.PinCompatActivity;
 import com.github.omadahealth.lollipin.lib.managers.AppLock;
-import com.github.omadahealth.lollipin.lib.managers.AppLockActivity;
 import com.github.omadahealth.lollipin.lib.managers.LockManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends PinCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
-    Button startServiceButton, stopServiceButton;
+    private static final int REQUEST_CODE_ENABLE = 11;
     BottomNavigationView bottomAppBar;
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        LockManager<CustomPinActivity> lockManager = LockManager.getInstance();
-        lockManager.enableAppLock(this, CustomPinActivity.class);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        startServiceButton = findViewById(R.id.startServiceButton);
-        stopServiceButton = findViewById(R.id.stopServiceButton);
-        ((GlobalVars) getApplication()).setOpenedApp("com.dmitrijoss.geolock");
+        setContentView(R.layout.settings);
 
         bottomAppBar = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomAppBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,27 +47,35 @@ public class MainActivity extends PinCompatActivity {
         });
     }
 
-    public void goToF(View view){
-        Intent i = new Intent(this, GeofenceMainActivity.class);
-        startActivity(i);
-    }
 
-    public void goToInstalledPackages(View view){
-
-        Intent intent = new Intent(this, FindInstalledApplications.class);
+    public void checkPin(View view){
+        Intent intent = new Intent(SettingsActivity.this, CustomPinActivity.class);
+        intent.putExtra(AppLock.EXTRA_TYPE, AppLock.UNLOCK_PIN);
         startActivity(intent);
     }
 
+    public void setUpPin(View view){
+        Intent intent = new Intent(SettingsActivity.this, CustomPinActivity.class);
+        intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
+        startActivityForResult(intent, REQUEST_CODE_ENABLE);
 
-    public void disablePin(View view){
         LockManager<CustomPinActivity> lockManager = LockManager.getInstance();
-        lockManager.disableAppLock();
+        lockManager.enableAppLock(this, CustomPinActivity.class);
     }
 
+    public void startService(View view){
+        Intent serviceIntent = new Intent(this, LockingForegroundService.class);
+        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
 
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
 
-
-
-
-
+    public void stopService(View view){
+        Intent serviceIntent = new Intent(this, LockingForegroundService.class);
+        //LockingForegroundService l = new LockingForegroundService();
+        //l.stopSelf();
+        stopService(serviceIntent);
+        //LockingForegroundService lockingForegroundService = new LockingForegroundService();
+        //lockingForegroundService.stopSelf();
+    }
 }
